@@ -6,20 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@ResponseBody
 public class JoinController {
 
-    @Autowired
-    private JoinService joinService;
+    private final JoinService joinService;
 
-
-    @GetMapping("/join")
-    public String joinP(){
-        return "join";
+    public JoinController(JoinService joinService){
+        this.joinService =joinService;
     }
 
-    @PostMapping("/joinProc")
+
+
+    @PostMapping("/join")
     public String joinProcess(JoinDTO joinDTO){
 
         System.out.println(joinDTO.getUsername());
@@ -27,6 +28,6 @@ public class JoinController {
         joinService.joinProcess(joinDTO );
 
 
-        return "redirect:/login";
+        return "ok";
     }
 }
