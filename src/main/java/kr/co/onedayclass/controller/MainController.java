@@ -16,24 +16,20 @@ import java.util.Iterator;
 public class MainController {
 
     @GetMapping("/")
-    public String mainP(){
-        return "maim";
-    }
-//    @GetMapping("/")
-//    public String mainP(Model model){
-//        String id = SecurityContextHolder.getContext().getAuthentication().getName();
-//
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//
-//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-//        Iterator<? extends GrantedAuthority> iter = authorities.iterator();
-//        GrantedAuthority auth = iter.next();
-//        String role = auth.getAuthority();
+    public String mainP(Model model){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        Iterator<? extends GrantedAuthority> iter = authorities.iterator();
+        GrantedAuthority auth = iter.next();
+        String role = auth.getAuthority();
 //
 //        model.addAttribute("id", id);
 //        model.addAttribute("role", role);
-//
-//        return "main";
-//    }
+
+        return "main" + username + role ;
+    }
 
 }
