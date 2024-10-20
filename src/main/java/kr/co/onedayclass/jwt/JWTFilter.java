@@ -55,6 +55,10 @@ public class JWTFilter extends OncePerRequestFilter {
             System.out.println("token expired");
             filterChain.doFilter(request, response);
 
+            Cookie expiredCookie = new Cookie("Authorization", null);
+            expiredCookie.setMaxAge(0); // 쿠키 삭제
+            expiredCookie.setPath("/");
+            response.addCookie(expiredCookie);
             //조건이 해당되면 메소드 종료 (필수)
             return;
         }
