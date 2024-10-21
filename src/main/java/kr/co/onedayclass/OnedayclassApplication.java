@@ -8,6 +8,8 @@ public class OnedayclassApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OnedayclassApplication.class, args);
+
     }
+
 
 }
