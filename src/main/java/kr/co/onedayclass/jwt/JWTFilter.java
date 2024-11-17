@@ -33,6 +33,7 @@ public class JWTFilter extends OncePerRequestFilter {
             if (cookie.getName().equals("Authorization")) {
 
                 authorization = cookie.getValue();
+                break;
             }
         }
 
