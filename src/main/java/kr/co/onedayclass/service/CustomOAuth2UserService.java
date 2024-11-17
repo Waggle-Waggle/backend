@@ -1,8 +1,8 @@
 package kr.co.onedayclass.service;
 
 import kr.co.onedayclass.dto.*;
-import kr.co.onedayclass.entity.UserEntity;
-import kr.co.onedayclass.repository.UserRepository;
+import kr.co.onedayclass.entity.OauthEntity;
+import kr.co.onedayclass.repository.OauthRepository;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
-    private final UserRepository userRepository;
+    private final OauthRepository oauthRepository;
 
-    public CustomOAuth2UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomOAuth2UserService(OauthRepository oauthRepository) {
+        this.oauthRepository = oauthRepository;
     }
 
     @Override
@@ -40,17 +40,17 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         }
 
         String username = oAuth2Response.getProvider()+" "+oAuth2Response.getProviderId();
-        UserEntity existData = userRepository.findByUsername(username);
+        OauthEntity existData = oauthRepository.findByUsername(username);
 
         if (existData == null) {
 
-            UserEntity userEntity = new UserEntity();
+            OauthEntity userEntity = new OauthEntity();
             userEntity.setUsername(username);
             userEntity.setEmail(oAuth2Response.getEmail());
             userEntity.setName(oAuth2Response.getName());
             userEntity.setRole("ROLE_USER");
 
-            userRepository.save(userEntity);
+            oauthRepository.save(userEntity);
 
             UserDTO userDTO = new UserDTO();
             userDTO.setUsername(username);
@@ -64,7 +64,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             existData.setEmail(oAuth2Response.getEmail());
             existData.setName(oAuth2Response.getName());
 
-            userRepository.save(existData);
+            oauthRepository.save(existData);
 
             UserDTO userDTO = new UserDTO();
             userDTO.setUsername(existData.getUsername());
