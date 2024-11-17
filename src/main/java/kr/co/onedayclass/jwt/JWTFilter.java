@@ -27,6 +27,13 @@ public class JWTFilter extends OncePerRequestFilter {
         //cookie들을 불러온 뒤 Authorization Key에 담긴 쿠키를 찾음
         String authorization = null;
         Cookie[] cookies = request.getCookies();
+        // 쿠키가 없으면 필터 체인 계속 실행
+        if (cookies == null) {
+            System.out.println("No cookies found in the request.");
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         for (Cookie cookie : cookies) {
 
             System.out.println(cookie.getName());
