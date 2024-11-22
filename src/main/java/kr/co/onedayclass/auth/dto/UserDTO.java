@@ -1,17 +1,14 @@
 package kr.co.onedayclass.auth.dto;
 
-import static lombok.AccessLevel.*;
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-// @Setter
-@NoArgsConstructor(access = PROTECTED)
+@Setter
+@NoArgsConstructor()
 @AllArgsConstructor
-@Builder
 public class UserDTO {
 
 	private String username;
