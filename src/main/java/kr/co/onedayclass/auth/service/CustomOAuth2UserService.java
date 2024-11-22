@@ -49,7 +49,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 		if (existData == null) {
 
-			// TODO: UserEntity
+			// TODO: UserEntity 대신 User로 변경
 			// UserEntity userEntity = new UserEntity();
 			// userEntity.setUsername(username);
 			// userEntity.setEmail(oAuth2Response.getEmail());
@@ -64,16 +64,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 			userRepository.save(user);
 
-			// TODO: userDTO
-			// UserDTO userDTO = new UserDTO();
-			// userDTO.setUsername(username);
-			// userDTO.setName(oAuth2Response.getName());
-			// userDTO.setRole("ROLE_USER");
-
-			UserDTO userDTO = UserDTO.builder()
-				.username(oAuth2Response.getName())
-				.role("ROLE_USER")
-				.build();
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUsername(username);
+			userDTO.setName(oAuth2Response.getName());
+			userDTO.setRole("ROLE_USER");
 
 			return new CustomOAuth2User(userDTO);
 		} else {
@@ -83,15 +77,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 			userRepository.save(existData);
 
-			// UserDTO userDTO = new UserDTO();
-			// userDTO.setUsername(existData.getUsername());
-			// userDTO.setName(oAuth2Response.getName());
-			// userDTO.setRole(existData.getRole());
-
-			UserDTO userDTO = UserDTO.builder()
-				.username(oAuth2Response.getName())
-				.role(existData.getRole())
-				.build();
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUsername(existData.getUsername());
+			userDTO.setName(oAuth2Response.getName());
+			userDTO.setRole(existData.getRole());
 
 			return new CustomOAuth2User(userDTO);
 		}
