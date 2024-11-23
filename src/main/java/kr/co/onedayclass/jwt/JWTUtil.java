@@ -31,8 +31,18 @@ public class JWTUtil {
     }
 
     public Boolean isExpired(String token) {
-
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration().before(new Date());
+        try {
+            Date expirationDate = Jwts.parser()
+                    .verifyWith(secretKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .getExpiration();
+            return expirationDate.before(new Date());
+        } catch (Exception e) {
+            // 필요한 경우 예외를 로깅하고, 토큰이 만료되거나 유효하지 않은 것으로 처리
+            return true;
+        }
     }
 
     public String createJwt(String username, String role, Long expiredMs) {
