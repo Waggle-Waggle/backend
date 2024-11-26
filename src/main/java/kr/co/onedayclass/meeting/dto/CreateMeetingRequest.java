@@ -12,11 +12,13 @@ import jakarta.validation.constraints.NotNull;
 import kr.co.onedayclass.image.domain.Image;
 import kr.co.onedayclass.meeting.domain.Category;
 import kr.co.onedayclass.meeting.domain.Meeting;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor
 public class CreateMeetingRequest {
 
 	@NotBlank
