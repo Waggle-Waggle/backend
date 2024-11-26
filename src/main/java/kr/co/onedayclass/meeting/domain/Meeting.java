@@ -1,5 +1,6 @@
 package kr.co.onedayclass.meeting.domain;
 
+import static jakarta.persistence.EnumType.*;
 import static jakarta.persistence.GenerationType.*;
 import static lombok.AccessLevel.*;
 
@@ -25,7 +26,7 @@ public class Meeting extends BaseEntity {
 	private Long seq;
 
 	private String name;
-	@Enumerated
+	@Enumerated(STRING)
 	private Category category;
 	// TODO: VO로 만들건지 정해야 됨
 	private String location;

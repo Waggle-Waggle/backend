@@ -1,8 +1,13 @@
 package kr.co.onedayclass.user.domain;
 
+import static jakarta.persistence.EnumType.*;
 import static jakarta.persistence.GenerationType.*;
 import static lombok.AccessLevel.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -33,9 +38,11 @@ public class User extends BaseEntity {
 	private String role;
 	private String age;
 	private String gender;
-	private Category category;
+	@ElementCollection(targetClass = Category.class)
+	@Enumerated(STRING)
+	private List<Category> categories = new ArrayList<>();
 	private int waggleScore;
-	@Enumerated
+	@Enumerated(STRING)
 	private SocialType socialType;
 	private boolean isAgePublic;
 	private boolean isGenderPublic;

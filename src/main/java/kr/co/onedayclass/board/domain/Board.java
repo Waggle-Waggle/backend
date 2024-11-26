@@ -1,5 +1,6 @@
 package kr.co.onedayclass.board.domain;
 
+import static jakarta.persistence.EnumType.*;
 import static jakarta.persistence.FetchType.*;
 import static jakarta.persistence.GenerationType.*;
 import static lombok.AccessLevel.*;
@@ -27,7 +28,7 @@ public class Board {
 	@GeneratedValue(strategy = IDENTITY)
 	private Long seq;
 
-	@Enumerated
+	@Enumerated(STRING)
 	private BoardType boardType;
 	private String title;
 	private String content;

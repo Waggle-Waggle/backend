@@ -1,5 +1,6 @@
 package kr.co.onedayclass.meeting.domain;
 
+import static jakarta.persistence.EnumType.*;
 import static jakarta.persistence.FetchType.*;
 import static jakarta.persistence.GenerationType.*;
 import static lombok.AccessLevel.*;
@@ -31,7 +32,7 @@ public class MeetingParticipant {
 
 	private LocalDateTime joinedAt;
 
-	@Enumerated
+	@Enumerated(STRING)
 	private ParticipationStatus participationStatus;
 
 	@ManyToOne(fetch = LAZY)
