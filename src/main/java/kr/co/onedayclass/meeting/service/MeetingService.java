@@ -21,11 +21,14 @@ public class MeetingService {
 	private final MeetingRepository meetingRepository;
 
 	private final ImageService imageService;
+	private final MeetingParticipantService meetingParticipantService;
 
 	@Transactional
 	public CreateMeetingResponse create(Long userId, CreateMeetingRequest request) {
 		validateUniqueName(request.getName());
 		Meeting meeting = meetingRepository.save(request.toMeeting(userId));
+		meetingParticipantService.join(userId, meeting.getSeq());
+
 		if (request.getImgUrl() != null) {
 			Image image = imageService.save(request.toImage(meeting.getSeq()));
 			return CreateMeetingResponse.from(meeting, image.getUrl());
