@@ -4,8 +4,9 @@ WORKDIR /app
 
 COPY ./gradle ./gradle
 COPY ./gradlew ./gradlew
-COPY build.gradle ./build.gradle
-COPY settings.gradle ./settings.gradle
+COPY ./build.gradle ./build.gradle
+COPY ./settings.gradle ./settings.gradle
+COPY ./src ./src
 
 RUN ./gradlew build -x test --no-daemon
 
