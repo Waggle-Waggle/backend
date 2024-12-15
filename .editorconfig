@@ -1,0 +1,37 @@
+# .editorconfig
+root = true
+
+# 기본 설정 (모든 파일에 적용)
+[*]
+charset = utf-8                    # 파일 인코딩
+end_of_line = lf                   # 줄바꿈 스타일 (Unix)
+insert_final_newline = true        # 파일 마지막에 빈 줄 추가
+trim_trailing_whitespace = true    # 라인 끝 공백 제거
+
+# Java 파일 설정
+[*.java]
+indent_style = space               # 들여쓰기: 스페이스
+indent_size = 4                    # 스페이스 크기: 4칸
+max_line_length = 120              # 최대 라인 길이 제한
+
+# Dockerfile 설정
+[Dockerfile]
+indent_style = space
+indent_size = 2                    # 스페이스 크기: 2칸
+
+# YAML 파일 설정
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false   # YAML에서는 라인 끝 공백을 제거하지 않음
+
+# Properties 파일 설정
+[*.properties]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false   # properties 파일도 공백을 유지
+
+# Gradle 파일 설정
+[*.gradle]
+indent_style = space
+indent_size = 2                    # Gradle에서는 2칸 들여쓰기 사용
